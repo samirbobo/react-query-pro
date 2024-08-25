@@ -9,6 +9,7 @@ import RQSuperHeroes from "./pages/RQSuperHeroes";
 import SuperHeroes from "./pages/SuperHeroes";
 import NotFound from "./pages/NotFound";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import Root from "./components/Root";
 
 const router = createBrowserRouter(
@@ -21,13 +22,21 @@ const router = createBrowserRouter(
     </Route>
   )
 );
+const MINUTE = 1000 * 60;
 
-const client = new QueryClient();
+const client = new QueryClient({
+  defaultOptions: {
+    queries: {
+      gcTime: MINUTE,
+    },
+  },
+});
 
 function App() {
   return (
     <QueryClientProvider client={client}>
       <RouterProvider router={router} />
+      <ReactQueryDevtools initialIsOpen={true} />
     </QueryClientProvider>
   );
 }
