@@ -17,6 +17,7 @@
     "@mui/icons-material": "^5.16.7",
     "@mui/material": "^5.16.7",
     "@tanstack/react-query": "^5.52.1",
+    "@tanstack/react-query-devtools": "^5.52.1",
     "axios": "^1.7.5",
     "json-server": "^1.0.0-beta.2",
     "react": "^18.3.1",

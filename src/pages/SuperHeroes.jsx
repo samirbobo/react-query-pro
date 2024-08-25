@@ -6,13 +6,21 @@ const fetchSuperHeroes = () => {
 };
 
 export default function SuperHeroes() {
-  const { isPending, data } = useQuery({
+  const { isPending, data, isError, error } = useQuery({
     queryKey: ["super-heroes"],
     queryFn: fetchSuperHeroes,
+    staleTime: 10000,
+    refetchOnMount: true,
+    // refetchOnWindowFocus: "true",
   });
 
   if (isPending) {
     return <h2>Loading...</h2>;
+  }
+
+
+  if (isError) {
+    return <h2>{error.message}</h2>;
   }
 
   return (
