@@ -1,23 +1,27 @@
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
-
-const fetchSuperHeroes = () => {
-  return axios.get("http://localhost:3000/superheroes");
-};
+import { useSuperHeroesData } from "../Hooks/useSuperHeroesData";
 
 export default function SuperHeroes() {
-  const { isPending, data, isError, error } = useQuery({
-    queryKey: ["super-heroes"],
-    queryFn: fetchSuperHeroes,
-    staleTime: 10000,
-    refetchOnMount: true,
-    // refetchOnWindowFocus: "true",
-  });
+  const { isLoading, data, isError, error, refetch, isFetching } =
+    useSuperHeroesData(); // عملت هوك من الصفر عشان لو حبيت اكرره في صفحات تانيه معيدش كتابه نفس الاكواد ودي افضل طريقه
 
-  if (isPending) {
+    // useQuery({
+    //   queryKey: ["super-heroes"],
+    //   queryFn: fetchSuperHeroes,
+    //   // staleTime: 10000,
+    //   // refetchOnMount: true,
+    //   // refetchOnWindowFocus: "true",
+    //   // refetchInterval: 2000,
+    //   // refetchIntervalInBackground: true,
+    //   // enabled: false,
+    //   select: (data) => {
+    //     const HeroNames = data.data.map(hero => hero.name);
+    //     return HeroNames;
+    //   }, 
+    // });
+
+  if (isLoading || isFetching) {
     return <h2>Loading...</h2>;
   }
-
 
   if (isError) {
     return <h2>{error.message}</h2>;
@@ -26,9 +30,13 @@ export default function SuperHeroes() {
   return (
     <>
       <h2>Super Heroes</h2>
-      {data?.data.map((hero) => {
+      <button onClick={refetch}>Fetch Data</button>
+      {/* {data?.data.map((hero) => {
         return <div key={hero.name}>{hero.name}</div>;
+      })} */}
+      {data.map((hero) => {
+        return <div key={hero}>{hero}</div>;
       })}
     </>
-  )
+  );
 }
