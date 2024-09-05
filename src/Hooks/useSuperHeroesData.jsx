@@ -9,9 +9,9 @@ export const useSuperHeroesData = () => {
   return useQuery({
     queryKey: ["super-heroes"],
     queryFn: fetchSuperHeroes,
-    select: (data) => {
-      const HeroNames = data.data.map((hero) => hero.name);
-      return HeroNames;
-    },
+    // select: (data) => {
+    //   const HeroNames = data.data.map((hero) => hero.name);
+    //   return HeroNames;
+    // },
   });
 }

@@ -7,23 +7,29 @@ import {
 import Home from "./pages/Home";
 import RQSuperHeroes from "./pages/RQSuperHeroes";
 import SuperHeroes from "./pages/SuperHeroes";
+import SuperHero from "./pages/SuperHero";
 import NotFound from "./pages/NotFound";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import Root from "./components/Root";
+import ParallelQueries from "./pages/ParallelQueries";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Root />}>
       <Route index element={<Home />} />
-      <Route path="super-heroes" element={<SuperHeroes />} />
+      <Route path="super-heroes">
+        <Route index element={<SuperHeroes />} />
+        <Route path=":heroId" element={<SuperHero />} />
+      </Route>
       <Route path="rq-super-heroes" element={<RQSuperHeroes />} />
+      <Route path="rq-parallel" element={<ParallelQueries />} />
       <Route path="*" element={<NotFound />} />
     </Route>
   )
 );
-const MINUTE = 1000 * 60;
 
+const MINUTE = 1000 * 60;
 const client = new QueryClient({
   defaultOptions: {
     queries: {
