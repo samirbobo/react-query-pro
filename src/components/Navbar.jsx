@@ -14,9 +14,11 @@ import { useNavigate } from "react-router-dom";
 
 const pages = [
   { title: "Home", link: "/" },
-  { title: "Traditional Super Heroes", link: "super-heroes" },
+  { title: "Super Heroes", link: "super-heroes" },
   { title: "RQ Super Heroes", link: "rq-super-heroes" },
   { title: "RQ Parallel", link: "rq-parallel" },
+  { title: "RQ Dynamic Parallel", link: "rq-dynamic-parallel" },
+  { title: "Dependent Queries", link: "dependent-queries" },
 ];
 
 function Navbar() {
