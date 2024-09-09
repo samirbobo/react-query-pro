@@ -15,10 +15,10 @@ import { useNavigate } from "react-router-dom";
 const pages = [
   { title: "Home", link: "/" },
   { title: "Super Heroes", link: "super-heroes" },
-  { title: "RQ Super Heroes", link: "rq-super-heroes" },
-  { title: "RQ Parallel", link: "rq-parallel" },
-  { title: "RQ Dynamic Parallel", link: "rq-dynamic-parallel" },
+  { title: "Parallel", link: "parallel" },
+  { title: "Dynamic Parallel", link: "dynamic-parallel" },
   { title: "Dependent Queries", link: "dependent-queries" },
+  { title: "Colors", link: "colors" },
 ];
 
 function Navbar() {
