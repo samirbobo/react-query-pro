@@ -19,6 +19,7 @@ const pages = [
   { title: "Dynamic Parallel", link: "dynamic-parallel" },
   { title: "Dependent Queries", link: "dependent-queries" },
   { title: "Colors", link: "colors" },
+  { title: "Infinite", link: "infinite" },
 ];
 
 function Navbar() {
