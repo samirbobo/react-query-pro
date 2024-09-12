@@ -11,8 +11,7 @@ export default function SuperHeroes() {
   const [alterEgo, setAlterEgo] = useState(null);
   const [open, setOpen] = useState(false);
 
-  const { isLoading, data, isError, error, refetch, isFetching } =
-    useSuperHeroesData(); // عملت هوك من الصفر عشان لو حبيت اكرره في صفحات تانيه معيدش كتابه نفس الاكواد ودي افضل طريقه
+  const { isLoading, data, isError, error, refetch } = useSuperHeroesData(); // عملت هوك من الصفر عشان لو حبيت اكرره في صفحات تانيه معيدش كتابه نفس الاكواد ودي افضل طريقه
 
   // useQuery({
   //   queryKey: ["super-heroes"],
@@ -32,7 +31,6 @@ export default function SuperHeroes() {
   const {
     mutate: addHero,
     isError: isAddError,
-    isPending,
     isSuccess,
   } = useAddSuperHeroData();
 
@@ -57,10 +55,7 @@ export default function SuperHeroes() {
     }
   }, [isSuccess]);
 
-  if (isLoading || isFetching) {
-    return <h2>Loading...</h2>;
-  }
-  if (isPending) {
+  if (isLoading) {
     return <h2>Loading...</h2>;
   }
 
