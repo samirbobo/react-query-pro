@@ -22,6 +22,8 @@ const router = createBrowserRouter(
     </Route>
   )
 );
+// بعد 10 دقائق البيانات المتخزنه هتتمسح تلقائي من المخزن الافتراضي ولكن انا كده عدلت الخادم كله يعني اي فيتش هياخد 
+// 10 دقائق ويتجدد
 const MINUTE = 1000 * 60;
 
 const client = new QueryClient({
