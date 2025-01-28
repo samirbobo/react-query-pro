@@ -6,19 +6,19 @@ const fetchSuperHeroes = () => {
 };
 
 export default function SuperHeroes() {
-  const { isPending, data, isError, error } = useQuery({
+  const { isLoading, data, isError, error, refetch, isRefetching } = useQuery({
     queryKey: ["super-heroes"],
     queryFn: fetchSuperHeroes,
     // الشرح كله في صفحه الوثائق انا سايب دول هنا بس لمجرد فهم كيفيه كتابتهم
 
-    // gcTime: 1000 * 60, // عدلت وقت حفظ البيانات لدقيقه بدل 5 دقائق
-    // staleTime: 1000 * 60, // كده البيانات الي هترجع من السيرفر هتفضل جديده لمده دقيقه ومش هيعمل ريكوست تاني للسيرفر خلال المده ديه حته لو دخلت وخرجت من الصفحه ميت مره
-    // refetchOnMount: true, // ديه افضل واضمن حاله ودا الوضع الافتراضي بتاعها اصلا
-    // refetchOnWindowFocus: true, // لو استخدمتها بتعمل تحديث للصفحه بشكل لحظي عند تحديث البيانات
-    // refetchInterval: 5000, بيجيب البيانات بشكل دوري كل خمس ثواني
+    // enabled: false, // لمنع جلب البيانات بشكل مباشر عند تحميل الصفحه او الكمبونانت
+    select: (data) => {
+      const superHeroNames = data.data.map((hero) => hero.name);
+      return superHeroNames;
+    }, // استخدمتها لعاده هيكله شكل البيانات الي رجعلي بحيث انه يرجع الاسم بس لان بقيت البيانات مش في حاجه ليها
   });
 
-  if (isPending) {
+  if (isLoading || isRefetching) {
     return <h2>Loading...</h2>;
   }
 
@@ -29,8 +29,19 @@ export default function SuperHeroes() {
   return (
     <>
       <h2>Super Heroes</h2>
-      {data?.data.map((hero) => {
+
+      <button onClick={refetch} style={{ margin: "1rem 0", cursor: "pointer" }}>
+        fetch Data
+      </button>
+
+      {/* شكل البيانات قبل اعاده الهيكله */}
+      {/* {data?.data.map((hero) => {
         return <div key={hero.name}>{hero.name}</div>;
+      })} */}
+
+      {/* شكل البيانات بعد اعاده الهيكله */}
+      {data.map((heroName) => {
+        return <div key={heroName}>{heroName}</div>;
       })}
     </>
   );
