@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const fetchSuperHeroes = () => {
   return axios.get("http://localhost:3000/superheroes");
@@ -12,10 +13,10 @@ export default function SuperHeroes() {
     // الشرح كله في صفحه الوثائق انا سايب دول هنا بس لمجرد فهم كيفيه كتابتهم
 
     // enabled: false, // لمنع جلب البيانات بشكل مباشر عند تحميل الصفحه او الكمبونانت
-    select: (data) => {
-      const superHeroNames = data.data.map((hero) => hero.name);
-      return superHeroNames;
-    }, // استخدمتها لعاده هيكله شكل البيانات الي رجعلي بحيث انه يرجع الاسم بس لان بقيت البيانات مش في حاجه ليها
+    // select: (data) => {
+    //   const superHeroNames = data.data.map((hero) => hero.name);
+    //   return superHeroNames;
+    // }, // استخدمتها لعاده هيكله شكل البيانات الي رجعلي بحيث انه يرجع الاسم بس لان بقيت البيانات مش في حاجه ليها
   });
 
   if (isLoading || isRefetching) {
@@ -35,14 +36,18 @@ export default function SuperHeroes() {
       </button>
 
       {/* شكل البيانات قبل اعاده الهيكله */}
-      {/* {data?.data.map((hero) => {
-        return <div key={hero.name}>{hero.name}</div>;
-      })} */}
-
-      {/* شكل البيانات بعد اعاده الهيكله */}
-      {data.map((heroName) => {
-        return <div key={heroName}>{heroName}</div>;
+      {data?.data.map((hero) => {
+        return (
+          <div key={hero.name}>
+            {hero.name} <Link to={hero.id}>View</Link>
+          </div>
+        );
       })}
+
+      {/* use it with select prop: شكل البيانات بعد اعاده الهيكله */}
+      {/* {data.map((heroName) => {
+        return <div key={heroName}>{heroName}</div>;
+      })} */}
     </>
   );
 }
