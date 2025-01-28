@@ -14,8 +14,7 @@ import { useNavigate } from "react-router-dom";
 
 const pages = [
   { title: "Home", link: "/" },
-  { title: "Traditional Super Heroes", link: "super-heroes" },
-  { title: "RQ Super Heroes", link: "rq-super-heroes" },
+  { title: "RQ Super Heroes", link: "super-heroes" },
 ];
 
 function Navbar() {

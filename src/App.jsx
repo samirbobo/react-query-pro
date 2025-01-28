@@ -5,7 +5,6 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Home from "./pages/Home";
-import RQSuperHeroes from "./pages/RQSuperHeroes";
 import SuperHeroes from "./pages/SuperHeroes";
 import NotFound from "./pages/NotFound";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -17,7 +16,6 @@ const router = createBrowserRouter(
     <Route path="/" element={<Root />}>
       <Route index element={<Home />} />
       <Route path="super-heroes" element={<SuperHeroes />} />
-      <Route path="rq-super-heroes" element={<RQSuperHeroes />} />
       <Route path="*" element={<NotFound />} />
     </Route>
   )
