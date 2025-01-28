@@ -13,6 +13,8 @@ import Root from "./components/Root";
 import SuperHero from "./pages/SuperHero";
 import DynamicParallelQueries from "./pages/DynamicParallelQueries";
 import DependentQueries from "./pages/DependentQueries";
+import PaginatedQueries from "./pages/PaginatedQueries";
+import InfiniteQuery from "./pages/InfiniteQuery";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -36,6 +38,9 @@ const router = createBrowserRouter(
         element={<DependentQueries email="vishwas@example.com" />}
       />
 
+      <Route path="paginated" element={<PaginatedQueries />} />
+
+      <Route path="infinite" element={<InfiniteQuery />} />
       <Route path="*" element={<NotFound />} />
     </Route>
   )

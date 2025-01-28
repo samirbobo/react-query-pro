@@ -17,6 +17,8 @@ const pages = [
   { title: "RQ Super Heroes", link: "super-heroes" },
   { title: "Dynamic Parallel", link: "dynamic-parallel" },
   { title: "Dependent Queries", link: "dependent-queries" },
+  { title: "Paginated", link: "paginated" },
+  { title: "Infinite", link: "infinite" },
 ];
 
 function Navbar() {
